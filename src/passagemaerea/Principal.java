@@ -8,6 +8,7 @@ public class Principal {
     
     public static void main(String[] args) {
            Linha linha = new Linha();
+           
            linha.pedeOrigemDestino(msg);
            AeroportoOrigem = linha.pedeOrigemDestino(AeroportoOrigem);
            AeroportoDestino = linha.pedeOrigemDestino(AeroportoOrigem);
