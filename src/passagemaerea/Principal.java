@@ -1,18 +1,20 @@
 package passagemaerea;
 
 public class Principal {
-   
-    static String AeroportoOrigem;
-    static String AeroportoDestino;
-    String msg = "Informe o aeroporto de";
-    
+    public static String AeroportoOrigem = "";
+    public static String AeroportoDestino = "";
+    static String dataSaida;
+
     public static void main(String[] args) {
-           Linha linha = new Linha();
-           
-           linha.pedeOrigemDestino(msg);
-           AeroportoOrigem = linha.pedeOrigemDestino(AeroportoOrigem);
-           AeroportoDestino = linha.pedeOrigemDestino(AeroportoOrigem);
-        
+        Linha linha = new Linha();
+        Aeroporto a = new Aeroporto(); 
+        AeroportoOrigem = linha.pedeOrigemDestino("Informe o nome ou IATA (em letras maiúaeroporto de Origem (Nome ou IATA):");
+        a.VerificaAeroporto(AeroportoOrigem);
+        do {
+            AeroportoDestino = linha.pedeOrigemDestino("Informe o aeroporto de Destino (Nome ou IATA):");
+            a.VerificaAeroporto(AeroportoDestino);
+        } while (AeroportoOrigem.equals(AeroportoDestino));
+        dataSaida = linha.pedeData();
     }
 
 }
