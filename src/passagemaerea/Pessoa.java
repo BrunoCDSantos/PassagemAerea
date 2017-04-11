@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package passagemaerea;
 
-/**
- *
- * @author informatica
- */
+import java.util.Scanner;
+
 public class Pessoa {
+    static Scanner pe = new Scanner(System.in);
     
+    protected String pedeDados() {
+        System.out.println("");
+    }
 }
