@@ -54,9 +54,8 @@ public class Linha {
             int mes = Integer.valueOf(data.substring(3, 5));
             int maiorDia = diasNoMes[mes - 1];
             int ano = Integer.valueOf(data.substring(6));
-             if (ano < anoAtual) {
-                System.out.println("Data inválida.");
-                return true;
+             if (ano > anoAtual) {
+                return false;
             }
               if (mes < mesAtual){
                   System.out.println("Data inválida.");
