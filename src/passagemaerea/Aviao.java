@@ -1,10 +1,7 @@
-
+// pojo - plain old java object
 package passagemaerea;
 
-
 public class Aviao {
-    
-    int qtdLugares;
-    int numeroVoo;
-    
+    private int qtdLugares;
+    private int numeroVoo;    
 }
