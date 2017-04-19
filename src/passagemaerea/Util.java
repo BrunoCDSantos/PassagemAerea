@@ -12,16 +12,19 @@ import java.util.Scanner;
  * @author informatica
  */
 public class Util {
-    
+
     static String pedeString(String mensagem) {
         System.out.println(mensagem);
         return new Scanner(System.in).nextLine();
     }
-    
+
     static int pedeInteiro(String mensagem) {
-        System.out.println(mensagem);
-        return new Scanner(System.in).nextInt();
+       
+            System.out.println(mensagem);
+            return new Scanner(System.in).nextInt();
+       
+           
+        }
     }
-    
-    
-}
+
+

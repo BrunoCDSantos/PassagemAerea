@@ -39,14 +39,21 @@ public class Principal {
     private void cadastroCliente(int quantidadePassagem) {
         int precoPassagem;
         for (int i = 0; i > quantidadePassagem; i++) {
-            
+
         }
     }
 
     private void verificacaoCliente(boolean passa, String cpf) {
         String cpfCliente = cpf;
+        int IdadeCliente;
+        String nomeCliente;
+        String telefoneCliente;
+        String mask = "[0-9]{3}?\\.[0-9]{3}?\\.[0-9]{3}?\\-[0-9]{2}";
+        String maskTelefone = "\\([0-9]{2}?\\)[0-9]{4}?\\-[0-9]{4}";
         if (passa) {
-            cpfCliente = Util.pedeString("Digite o CPF do cliente:");
+            do {
+                cpfCliente = Util.pedeString("Digite o CPF do cliente(formato xxx.xxx.xxx-xx):");
+            } while (!cpfCliente.matches(mask));
 
         }
         Cliente cliente = buscaCliente(cpfCliente);
@@ -54,10 +61,23 @@ public class Principal {
         if (cliente == null) {
             // como o cliente não está cadastrado, cria um objeto
             // da classe Cliente e pede os demais dados para fazer o cadastro dele.
-            String nomeCliente = Util.pedeString("Digite o nome do Cliente:");
-            int IdadeCliente = Util.pedeInteiro("Digite a idade do Cliente");
+            do {
+             nomeCliente = Util.pedeString("Digite o nome do Cliente(diferente de nulo):");    
+            } while ("".equals(nomeCliente));
+            
+            
+            do {
+                IdadeCliente = Util.pedeInteiro("Digite a idade do Cliente(entre 17 à 100)");
+            } while (IdadeCliente < 17 || IdadeCliente > 99);
+            
+            
             if (IdadeCliente > 17) {
-                String telefoneCliente = Util.pedeString("Informe o telefone do cliente");
+                do {
+                    
+                    telefoneCliente = Util.pedeString("Informe o telefone do cliente(formato (xx)xxxx-xxxx");
+                } while (!telefoneCliente.matches(maskTelefone));
+                
+                
                 String endereco = Util.pedeString("Informe o endereço da sua casa:");
                 cliente = new Cliente(nomeCliente, cpfCliente, endereco, telefoneCliente, IdadeCliente);
 
@@ -114,20 +134,24 @@ public class Principal {
     private void iniciaPrograma() {
         montaListaClientes();
         int opcao;
-        do {
-            opcao = Util.pedeInteiro("Selecione a opção desejada:"
-                    + " \n 1 - Cadastrar"
-                    + " \n 2 - Vender"
-                    + " \n 3  - Sair:");
+        try {
+            do {
+                opcao = Util.pedeInteiro("Selecione a opção desejada:"
+                        + " \n 1 - Cadastrar"
+                        + " \n 2 - Vender"
+                        + " \n 3  - Sair:");
 
-            switch (opcao) {
-                case 1:
-                    verificacaoCliente(true, "0");
-                    break;
-                case 2:
-                    vendaPassagem();
-                    break;
-            }
-        } while (opcao != 3);
+                switch (opcao) {
+                    case 1:
+                        verificacaoCliente(true, "0");
+                        break;
+                    case 2:
+                        vendaPassagem();
+                        break;
+                }
+            } while (opcao != 3);
+        } catch (java.util.InputMismatchException e) {
+            System.out.println("Valor informado inválido, programa encerrado por erro(Digite um número não uma letra).");
+        }
     }
 }
