@@ -2,6 +2,7 @@ package passagemaerea;
 
 import java.util.ArrayList;
 
+
 public class Principal {
 
     public String AeroportoOrigem = "";
@@ -16,16 +17,29 @@ public class Principal {
     }
 
     private void cuidaLinha() {
+        Aeroporto mostra = new Aeroporto();
         Linha linha = new Linha();
-        //Aeroporto a = new Aeroporto();
-        AeroportoOrigem = linha.pedeOrigemDestino("Informe o nome ou IATA (em letras maiúaeroporto de Origem (Nome ou IATA):");
-        //a.VerificaAeroporto(AeroportoOrigem);
+        Aeroporto a = new Aeroporto();
+         Aviao voo = new Aviao();
+         
+         for(String b : mostra.iatas){
+                System.out.println(b);       
+       }
+        AeroportoOrigem = linha.pedeOrigemDestino("Informe o nome ou IATA (em letras maiúscula de Origem (Nome ou IATA):" );
+            
+        
+        a.VerificaAeroporto(AeroportoOrigem);
         do {
             AeroportoDestino = linha.pedeOrigemDestino("Informe o aeroporto de Destino (Nome ou IATA):");
-            //a.VerificaAeroporto(AeroportoDestino);
-        } while (AeroportoOrigem.equals(AeroportoDestino));
-        dataSaida = linha.pedeData();
-    }
+            a.VerificaAeroporto(AeroportoDestino);
+         } while (AeroportoOrigem.equals(AeroportoDestino));
+            dataSaida = linha.pedeData();
+        //System.out.println("O número do seu voo é: " + voo.InformaVoo());
+        //System.out.println("O número da sua poltrona é: " + voo.InformaLugar());
+
+    //}
+
+}
 
     private Cliente buscaCliente(String cpf) {
         for (Cliente objeto : listaClientes) {
@@ -34,6 +48,14 @@ public class Principal {
             }
         }
         return null;
+    }
+    private String verificaCpf(String mensagem){
+        String CpfVerificado;
+        String mask = "[0-9]{3}?\\.[0-9]{3}?\\.[0-9]{3}?\\-[0-9]{2}";
+        do {
+                CpfVerificado = Util.pedeString(mensagem + " (formato xxx.xxx.xxx-xx não podendo conter letras):" );
+            } while (!CpfVerificado.matches(mask));
+        return CpfVerificado;
     }
 
     private void cadastroCliente(int quantidadePassagem) {
@@ -48,13 +70,10 @@ public class Principal {
         int IdadeCliente;
         String nomeCliente;
         String telefoneCliente;
-        String mask = "[0-9]{3}?\\.[0-9]{3}?\\.[0-9]{3}?\\-[0-9]{2}";
+        
         String maskTelefone = "\\([0-9]{2}?\\)[0-9]{4}?\\-[0-9]{4}";
         if (passa) {
-            do {
-                cpfCliente = Util.pedeString("Digite o CPF do cliente(formato xxx.xxx.xxx-xx):");
-            } while (!cpfCliente.matches(mask));
-
+            cpfCliente = verificaCpf("Digite o CPF do cliente");
         }
         Cliente cliente = buscaCliente(cpfCliente);
         // verifica se o cliente está ou não cadastrado.
@@ -74,7 +93,7 @@ public class Principal {
             if (IdadeCliente > 17) {
                 do {
                     
-                    telefoneCliente = Util.pedeString("Informe o telefone do cliente(formato (xx)xxxx-xxxx");
+                    telefoneCliente = Util.pedeString("Informe o telefone do cliente(formato (xx)xxxx-xxxx não podendo conter letras):");
                 } while (!telefoneCliente.matches(maskTelefone));
                 
                 
@@ -99,7 +118,7 @@ public class Principal {
     }
 
     private void montaListaClientes() {
-        listaClientes.add(new Cliente("Joao da Silva1", "1", "333", "44", 18));
+        listaClientes.add(new Cliente("Joao da Silva1", "168.129.201-02", "333", "44", 18));
         listaClientes.add(new Cliente("Joao da Silva12", "12", "22", "44", 18));
         listaClientes.add(new Cliente("Joao da Silva123", "123", "123", "52", 19));
         listaClientes.add(new Cliente("Joao da Silva1234", "1234", "1234", "62", 20));
@@ -109,7 +128,9 @@ public class Principal {
     private void vendaPassagem() {
         int escolha;
         String CpfVenda;
-        CpfVenda = Util.pedeString("Começaremos a venda de passagens áreas por favor digite seu CPF para continuarmos:");
+       
+           CpfVenda = verificaCpf("Começaremos a venda de passagens áreas por favor digite seu CPF para continuarmos:"); 
+        
         Cliente cliente = buscaCliente(CpfVenda);
         if (cliente == null) {
             escolha = Util.pedeInteiro("Cliente ainda não cadastrado, gostaria de cadastrar?\n"

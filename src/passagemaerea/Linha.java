@@ -9,10 +9,15 @@ import java.util.Scanner;
 public class Linha {
 
     static Scanner leia = new Scanner(System.in);
-   
+
     public String pedeOrigemDestino(String msg) {
-        System.out.println(msg);
-        String Aeroporto = leia.nextLine().trim();
+        Aeroporto verific = new Aeroporto();
+        String Aeroporto;
+        do {
+            Aeroporto = Util.pedeString(msg);
+            verific.VerificaAeroporto(Aeroporto);
+        } while (verific.verdadeiro);
+
         return Aeroporto;
     }
 
@@ -45,16 +50,16 @@ public class Linha {
     public boolean VerificaData(String data, String dataAtual) {
 
         int[] diasNoMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-      //separação da data atual em mês e ano
+        //separação da data atual em mês e ano
         int mesAtual = Integer.valueOf(dataAtual.substring(3, 5));
         int anoAtual = Integer.valueOf(dataAtual.substring(6));
         int dia = Integer.valueOf(data.substring(0, 2));
-      
+
         try {
             int mes = Integer.valueOf(data.substring(3, 5));
             int maiorDia = diasNoMes[mes - 1];
             int ano = Integer.valueOf(data.substring(6));
-                if (ano < anoAtual || mes < mesAtual) {
+            if (ano < anoAtual || mes < mesAtual) {
                 System.out.println("Data inválida.");
                 return true;
             }
@@ -62,7 +67,7 @@ public class Linha {
                 System.out.println("Data inválida.");
                 return true;
             }
-                      
+
         } catch (Exception e) {
             System.out.println("Data inválida.");
             return true;
