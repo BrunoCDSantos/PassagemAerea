@@ -2,7 +2,7 @@ package passagemaerea;
 
 import java.util.ArrayList;
 
-public class Principal {
+public class Principal { 
 
     public String AeroportoOrigem = "";
     public String AeroportoDestino = "";

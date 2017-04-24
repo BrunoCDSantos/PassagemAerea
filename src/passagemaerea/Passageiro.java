@@ -3,7 +3,7 @@ package passagemaerea;
 public class Passageiro {
      private String nome, cpfCliente, telefone, tipodaPassagem, idPassagem, cpfPassageiro;
 
-   
+    
      private int idade, numeroDaPoltrona;
      private float preco;
    

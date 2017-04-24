@@ -33,7 +33,7 @@ public class Aeroporto {
             if (aeroporto.equalsIgnoreCase(a)) {
                 verdadeiro = false;
             }
-        }
+        } 
 
     }
 
