@@ -94,7 +94,7 @@ public class Linha {
 
     public void CalculaPrevisão(String AeroportoOrigem, String AeroportoDestino) {
         String previsao = BuscaPrevisao(AeroportoOrigem, AeroportoDestino);
-        System.out.println("A viagem demora em torno de " + previsao);
+        System.out.println("O tempo aproximado de voo será de:  " + previsao);
 
     }
 

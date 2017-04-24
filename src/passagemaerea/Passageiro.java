@@ -1,4 +1,3 @@
-
 package passagemaerea;
 
 public class Passageiro {
