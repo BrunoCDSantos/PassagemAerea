@@ -1,32 +1,36 @@
 package passagemaerea;
 
 public class Venda {
- 
+      String nome;
+      String telefone;
+   int idadePassageiro = 0;
     public String Nome() {
-        String nome;
+        String nome1;
         do {
-            nome = Util.pedeString("Digite o nome do passageiro diferente de nada");
-        } while (nome.equals(""));
-        return nome;
+            nome1 = Util.pedeString("Digite o nome do passageiro diferente de nada");
+        } while (nome1.equals(""));
+        return nome1;
     }
 
     public void cadastroDePassageiro() {
-        String nome = Nome();
-        String telefone = Telefone();
-        int idade = Idade();
+         nome = Nome();
+         telefone = Telefone();
+         Idade();
     }
 
-    private String Telefone() {
-        String telefone;
+    public String Telefone() {
+        
+        String telefone1;
         String maskTelefone = "\\([0-9]{2}?\\)[0-9]{4}?\\-[0-9]{4}";
         do {
-            telefone = Util.pedeString("Informe o telefone do Passageiro(formato (xx)xxxx-xxxx não podendo conter letras):");
-        } while (!telefone.matches(maskTelefone));
-    return telefone ;
+            telefone1 = Util.pedeString("Informe o telefone do Passageiro(formato (xx)xxxx-xxxx não \n"
+                    + "podendo conter letras):");
+        } while (!telefone1.matches(maskTelefone));
+    return telefone1 ;
     }
 
     private int Idade() {
-        int idadePassageiro = 0;
+       
         do {
               idadePassageiro = Util.pedeInteiro("Informe a idade do passageiro(entre 5 à 100):");
         } while (idadePassageiro < 5 || idadePassageiro > 99);

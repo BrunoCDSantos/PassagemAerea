@@ -2,13 +2,14 @@ package passagemaerea;
 
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat; 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Linha {
 
     static Scanner leia = new Scanner(System.in);
+    float preco;
 
     public String pedeOrigemDestino(String msg) {
         Aeroporto verific = new Aeroporto();
@@ -68,20 +69,21 @@ public class Linha {
             int ano = Integer.valueOf(data.substring(6));
             if (mes < mesAtual) {
                 if (ano <= anoAtual) {
-                    System.out.println("Data inválida.");
-                    return true;
-                }else{
-                    return false;
+                    if (dia < 0 || dia > maiorDia) {
+                        System.out.println("data invalida");
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
-                
 
             }
             if (ano < anoAtual) {
-                System.out.println("Data inválida");
+                System.out.println("Data invÃ¡lida");
                 return true;
             }
             if (dia < 0 || dia > maiorDia) {
-                System.out.println("Data inválida.");
+                System.out.println("Data invÃ¡lida.");
                 return true;
             }
 
@@ -105,6 +107,7 @@ public class Linha {
         for (PrevisaoPreco object : lista.chega) {
             if (object.getAeroportoOrigem().equals(AO) && object.getAeroportoDestino().equals(AD)) {
                 horario = object.getPrevicao();
+                preco = object.getPreco();
                 return horario;
             }
         }

@@ -2,7 +2,7 @@ package passagemaerea;
 
 import java.util.ArrayList;
 
-public class Principal { 
+public class Principal {
 
     public String AeroportoOrigem = "";
     public String AeroportoDestino = "";
@@ -29,7 +29,7 @@ public class Principal {
             System.out.println("**************************************************************************************************************");
             for (String b : mostra.aeroportos) {
                 if (!AeroportoOrigem.equalsIgnoreCase(b)) {
-                    System.out.println(b + "\n");  
+                    System.out.println(b + "\n");
                 }
             }
             AeroportoDestino = linha.pedeOrigemDestino("Escolha um aeroporto acima como o de desembarque (informe apenas a IATA)").toUpperCase();
@@ -58,10 +58,39 @@ public class Principal {
         return CpfVerificado;
     }
 
-    private void cadastroDaVenda(int quantidadePassagem, String Cpf) {
+    private void cadastroDaVenda(int quantidadePassagem, String CpfCliente) { 
+        String nome;
+        String IDs;
+        int lugar;
+        int idadePassageiro;
+        String Telefone;
+        String CpfPassageiro;
+        String tipoPassagem;
+        float precoPS;
+        String IdPss;
+        Passagem IdPassagem = new Passagem();
+        Linha preco = new Linha();
         Aviao ids = new Aviao();
         Venda psVendidas = new Venda();
-        psVendidas.cadastroDePassageiro();
+        
+        for (int i = 0; i < quantidadePassagem; i++) {
+            nome = psVendidas.Nome();
+            CpfPassageiro = verificaCpf("Digite o Cpf do Passageiro:");
+            Telefone = psVendidas.Telefone();
+            IDs = IdPassagem.IDsPassagem();
+            lugar = ids.InformaLugar();
+            idadePassageiro = psVendidas.idadePassageiro;
+            if ( idadePassageiro < 13) {
+                tipoPassagem = "Passagem meia";
+                precoPS = (float) (preco.preco * 0.25);
+            } else {
+                tipoPassagem = "Passagem Inteira";
+                precoPS = preco.preco;
+            }
+            Passageiros.add(new Passageiro(nome,CpfCliente,CpfPassageiro, Telefone, tipoPassagem, IDs, idadePassageiro , lugar, precoPS));
+        }
+        System.out.println("Passagem cadastratadas com sucesso.");
+      
     }
 
     private void verificacaoCliente(boolean passa, String cpf) {
@@ -139,6 +168,7 @@ public class Principal {
                     + "1 - sim\n"
                     + "2 - não");
             if (pss == 1) {
+                Passageiros.add(new Passageiro(nome,CpfCliente,CpfPassageiro, Telefone, tipoPassagem, IDs, idadePassageiro , lugar, precoPS));
                 qtdPassagem = qtdPassagem - 1;
             }
             cadastroDaVenda(qtdPassagem, CpfVenda);
