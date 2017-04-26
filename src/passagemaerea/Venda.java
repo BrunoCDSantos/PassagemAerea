@@ -29,7 +29,7 @@ public class Venda {
     return telefone1 ;
     }
 
-    private int Idade() {
+    public int Idade() {
        
         do {
               idadePassageiro = Util.pedeInteiro("Informe a idade do passageiro(entre 5 à 100):");

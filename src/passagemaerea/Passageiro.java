@@ -18,6 +18,10 @@ public class Passageiro {
         this.numeroDaPoltrona = numeroDaPoltrona;
         this.preco = preco;
     }
+
+    Passageiro(String nome, String CpfVenda, String CpfVenda0, String telefone, String inteira, int numeroVoo, int idade, int lugar, float preco) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public String getNome() {
         return nome;
     }

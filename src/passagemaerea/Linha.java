@@ -69,7 +69,7 @@ public class Linha {
             int ano = Integer.valueOf(data.substring(6));
             if (mes < mesAtual) {
                 if (ano <= anoAtual) {
-                    if (dia < 0 || dia > maiorDia) {
+                    if (dia > 1 || dia < maiorDia) {
                         System.out.println("data invalida");
                         return true;
                     } else {

@@ -28,7 +28,9 @@ public class Principal {
         do {
             System.out.println("**************************************************************************************************************");
             for (String b : mostra.aeroportos) {
-                if (!AeroportoOrigem.equalsIgnoreCase(b)) {
+                int burrice = b.indexOf("(");
+                String b1 = b.substring(burrice + 1, burrice + 4);
+                if (!AeroportoOrigem.equalsIgnoreCase(b1)) {
                     System.out.println(b + "\n");
                 }
             }
@@ -67,7 +69,7 @@ public class Principal {
         String CpfPassageiro;
         String tipoPassagem;
         float precoPS;
-        String IdPss;
+       
         Passagem IdPassagem = new Passagem();
         Linha preco = new Linha();
         Aviao ids = new Aviao();
@@ -75,11 +77,12 @@ public class Principal {
         
         for (int i = 0; i < quantidadePassagem; i++) {
             nome = psVendidas.Nome();
+            idadePassageiro = psVendidas.Idade();
             CpfPassageiro = verificaCpf("Digite o Cpf do Passageiro:");
             Telefone = psVendidas.Telefone();
             IDs = IdPassagem.IDsPassagem();
             lugar = ids.InformaLugar();
-            idadePassageiro = psVendidas.idadePassageiro;
+            
             if ( idadePassageiro < 13) {
                 tipoPassagem = "Passagem meia";
                 precoPS = (float) (preco.preco * 0.25);
@@ -149,15 +152,20 @@ public class Principal {
     private void vendaPassagem() {
         int escolha;
         String CpfVenda;
+        Aviao IDs = new Aviao();
+        Linha PrecoPS = new Linha();
 
         CpfVenda = verificaCpf("Iniciaremos a venda de passagens áreas, por favor digite \n"
                 + "seu CPF para continuarmos: ");
 
         Cliente cliente = buscaCliente(CpfVenda);
         if (cliente == null) {
-            escolha = Util.pedeInteiro("Cliente ainda não cadastrado, gostaria de cadastrar?\n"
+            do {
+                escolha = Util.pedeInteiro("Cliente ainda não cadastrado, gostaria de cadastrar?\n"
                     + "1 - sim\n"
                     + "2 - não");
+            } while ( escolha < 1 || escolha > 2);
+               
             if (escolha == 1) {
                 verificacaoCliente(false, CpfVenda);
             }
@@ -168,7 +176,16 @@ public class Principal {
                     + "1 - sim\n"
                     + "2 - não");
             if (pss == 1) {
-                Passageiros.add(new Passageiro(nome,CpfCliente,CpfPassageiro, Telefone, tipoPassagem, IDs, idadePassageiro , lugar, precoPS));
+                Passagem idPss = new Passagem();
+                String nome = cliente.getNome();
+                String telefone = cliente.getTelefone();
+                int idade = cliente.getIdade();
+                String numeroVoo = idPss.IDsPassagem();
+                int lugar = IDs.lugar;
+                float preco = PrecoPS.preco;
+                
+                Passageiros.add(new Passageiro(nome ,CpfVenda, CpfVenda, telefone , "Inteira", numeroVoo , idade , lugar, preco));
+                System.out.println("Passageiro cadastrado com sucesso");
                 qtdPassagem = qtdPassagem - 1;
             }
             cadastroDaVenda(qtdPassagem, CpfVenda);
