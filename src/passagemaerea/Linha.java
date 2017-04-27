@@ -14,10 +14,11 @@ public class Linha {
     public String pedeOrigemDestino(String msg) {
         Aeroporto verific = new Aeroporto();
         String Aeroporto;
+        
         do {
             Aeroporto = Util.pedeString(msg);
             verific.VerificaAeroporto(Aeroporto);
-        } while (verific.verdadeiro);
+        } while (verific.verdadeiro || Aeroporto == "");
 
         return Aeroporto;
     }
@@ -56,14 +57,14 @@ public class Linha {
     }
 
     public boolean VerificaData(String data, String dataAtual) {
-
+        try {
         int[] diasNoMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         //separação da data atual em mês e ano
         int mesAtual = Integer.valueOf(dataAtual.substring(3, 5));
         int anoAtual = Integer.valueOf(dataAtual.substring(6));
         int dia = Integer.valueOf(data.substring(0, 2));
 
-        try {
+       
             int mes = Integer.valueOf(data.substring(3, 5));
             int maiorDia = diasNoMes[mes - 1];
             int ano = Integer.valueOf(data.substring(6));
@@ -94,9 +95,10 @@ public class Linha {
         return false;
     }
 
-    public void CalculaPrevisão(String AeroportoOrigem, String AeroportoDestino) {
+    public float CalculaPrevisão(String AeroportoOrigem, String AeroportoDestino) {
         String previsao = BuscaPrevisao(AeroportoOrigem, AeroportoDestino);
         System.out.println("O tempo aproximado de voo será de:  " + previsao);
+        return preco;
 
     }
 

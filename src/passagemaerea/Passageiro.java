@@ -1,27 +1,49 @@
 package passagemaerea;
 
 public class Passageiro {
-     private String nome, cpfCliente, telefone, tipodaPassagem, idPassagem, cpfPassageiro;
 
-    
-     private int idade, numeroDaPoltrona;
-     private float preco;
-   
+    private String nome, cpfCliente, cpfPassageiro, telefone, tipodaPassagem, idPassagem, AeroportoO, AeroportoD, data;
 
-    public Passageiro(String nome, String cpfCliente, String cpfPassageiro, String telefone, String tipodaPassagem, String idPassagem, int idade, int numeroDaPoltrona, float preco) {
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getAeroportoO() {
+        return AeroportoO;
+    }
+
+    public void setAeroportoO(String AeroportoO) {
+        this.AeroportoO = AeroportoO;
+    }
+
+    public String getAeroportoD() {
+        return AeroportoD;
+    }
+
+    public void setAeroportoD(String AeroportoD) {
+        this.AeroportoD = AeroportoD;
+    }
+    private int idade, numeroDaPoltrona;
+    private float preco;
+
+    public Passageiro(String nome, String cpfCliente, String cpfPassageiro, String telefone, String tipodaPassagem, String idPassagem, String AeroportoO, String AeroportoD,String data, int idade, int numeroDaPoltrona, float preco) {
         this.nome = nome;
         this.cpfCliente = cpfCliente;
+        this.cpfPassageiro = cpfPassageiro;
         this.telefone = telefone;
         this.tipodaPassagem = tipodaPassagem;
         this.idPassagem = idPassagem;
+        this.AeroportoO = AeroportoO;
+        this.AeroportoD = AeroportoD;
         this.idade = idade;
         this.numeroDaPoltrona = numeroDaPoltrona;
         this.preco = preco;
     }
 
-    Passageiro(String nome, String CpfVenda, String CpfVenda0, String telefone, String inteira, int numeroVoo, int idade, int lugar, float preco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     public String getNome() {
         return nome;
     }
@@ -30,12 +52,20 @@ public class Passageiro {
         this.nome = nome;
     }
 
-    public String getCpf() {
+    public String getCpfCliente() {
         return cpfCliente;
     }
 
-    public void setCpf(String cpf) {
-        this.cpfCliente = cpf;
+    public void setCpfCliente(String cpfCliente) {
+        this.cpfCliente = cpfCliente;
+    }
+
+    public String getCpfPassageiro() {
+        return cpfPassageiro;
+    }
+
+    public void setCpfPassageiro(String cpfPassageiro) {
+        this.cpfPassageiro = cpfPassageiro;
     }
 
     public String getTelefone() {
@@ -85,11 +115,5 @@ public class Passageiro {
     public void setPreco(float preco) {
         this.preco = preco;
     }
-     public String getCpfPassageiro() {
-        return cpfPassageiro;
-    }
 
-    public void setCpfPassageiro(String cpfPassageiro) {
-        this.cpfPassageiro = cpfPassageiro;
-    }
 }
