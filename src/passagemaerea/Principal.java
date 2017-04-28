@@ -31,8 +31,8 @@ public class Principal {
         do {
             System.out.println("**************************************************************************************************************");
             for (String b : mostra.aeroportos) {
-                int burrice = b.indexOf("(");
-                String b1 = b.substring(burrice + 1, burrice + 4);
+                int falso = b.indexOf("(");
+                String b1 = b.substring(falso + 1, falso + 4);
                 if (!AeroportoOrigem.equalsIgnoreCase(b1)) {
                     System.out.println(b + "\n");
                 }
@@ -129,13 +129,14 @@ public class Principal {
         int IdadeCliente;
         String nomeCliente;
         String telefoneCliente;
+        String endereco;
 
         String maskTelefone = "\\([0-9]{2}?\\)[0-9]{4}?\\-[0-9]{4}";
-        
+
         if (passa) {
             cpfCliente = verificaCpf("Informe o CPF do cliente:");
         }
-        
+
         Cliente cliente = buscaCliente(cpfCliente);
         // verifica se o cliente está ou não cadastrado.
         if (cliente == null) {
@@ -146,25 +147,22 @@ public class Principal {
 
             do {
                 IdadeCliente = Util.pedeInteiro("Informe a idade do cliente(de 18 à 100)");
-            } while (IdadeCliente < 17 || IdadeCliente > 100);
+            } while (IdadeCliente < 18 || IdadeCliente > 100);
 
             if (IdadeCliente > 17) {
                 do {
-
                     telefoneCliente = Util.pedeString("Informe o telefone do cliente(formato: (xx)xxxx-xxxx, não podendo conter letras):");
                 } while (!telefoneCliente.matches(maskTelefone));
 
-                String endereco = Util.pedeString("Informe o endereço:");
+                endereco = Util.pedeString("Informe o endereço (diferente de vazio):");
+
                 cliente = new Cliente(nomeCliente, cpfCliente, endereco, telefoneCliente, IdadeCliente);
 
                 // adiciona o objeto criado para manter o cliente cadastrado na memória do programa.
                 listaClientes.add(cliente);
                 System.out.println("Cliente cadastrado com sucesso!");
-
-            } else {
-                System.out.println("Não é possivel cadastrar o usuário, idade menor que o permitido (menor de 18 anos)."
-                        + "\ndigite um úsuario com idade valida:");
             }
+
         } else {
             System.out.println("Cliente já cadastrado no sistema.");
             System.out.println("Nome: " + cliente.getNome());
@@ -198,8 +196,8 @@ public class Principal {
             }
         } else {
             cuidaLinha();
-            int qtdPassagem = Util.pedeInteiro("Quantas passagens o senhor(a) gostaria?");
-            int pss = Util.pedeInteiro("O senhor(a) será um passageiro?\n"
+            int qtdPassagem = Util.pedeInteiro("Quantas passagens o(a) senhor(a) gostaria?");
+            int pss = Util.pedeInteiro("O(a) senhor(a) será um passageiro?\n"
                     + "1 - sim\n"
                     + "2 - não");
             float preco;
@@ -233,6 +231,7 @@ public class Principal {
         int opcao;
         try {
             do {
+                System.out.println("**************************************************************************************************************");
                 opcao = Util.pedeInteiro("Selecione a opção desejada:"
                         + " \n 1 - Cadastrar cliente"
                         + " \n 2 - Vender Passagem"
@@ -249,13 +248,10 @@ public class Principal {
                     case 3:
                         mostrarPassagem();
                         break;
-                    default:
-                        System.exit(0);
                 }
-
             } while (opcao != 4);
         } catch (java.util.InputMismatchException e) {
-            System.out.println("Valor informado inválido, programa encerrado por erro (informe apenas números, não outros caracteres).");
+            System.out.println("Valor informado inválido, informe apenas números.");
             iniciaPrograma();
         }
     }
@@ -264,10 +260,11 @@ public class Principal {
         Principal mostraP = new Principal();
         String CpfCliente = mostraP.verificaCpf("Informe o CPF do cliente para consultar os dados:");
         Cliente cliente = mostraP.buscaCliente(CpfCliente);
-        System.out.println("Dependentes desse CPF:");
         if (cliente != null) {
-            System.out.println("Este passageiro não foi cadastrado no nosso sistema.");
+            System.out.println("Nenhum dado encontrado.");
+            System.out.println("**************************************************************************************************************");
         } else {
+            System.out.println("Passagens compradas:");
             for (Passageiro object : Passageiros) {
                 if (object.getCpfCliente().equals(CpfCliente)) {
                     System.out.println("*********************************************** Passagem *******************************************************");
@@ -276,14 +273,11 @@ public class Principal {
                     System.out.println("* Aeroporto de embarque: " + object.getAeroportoO());
                     System.out.println("* Aeroporto de desembarque: " + object.getAeroportoD());
                     System.out.println("* Número da poltrona: " + object.getNumeroDaPoltrona());
-                    System.out.println("* ID da passagem: " + object.getIdPassagem());
                     System.out.println("* Tipo da passagem: Passagem " + object.getTipodaPassagem());
                     System.out.println("* Preço da passagem: R$" + object.getPreco());
                     System.out.println("**************************************************************************************************************");
                 }
             }
         }
-        Principal programa = new Principal();
-        programa.iniciaPrograma();
     }
 }

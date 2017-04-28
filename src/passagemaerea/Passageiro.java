@@ -84,7 +84,7 @@ public class Passageiro {
         this.tipodaPassagem = tipodaPassagem;
     }
 
-    public String getIdPassagem() {
+    public String getIdPassagem() { 
         return idPassagem;
     }
 

@@ -34,7 +34,7 @@ public class Linha {
 
         do {
             try {
-                System.out.println("Informe a data de embarque (dd/mm/aaaa)");
+                System.out.println("Informe a data de embarque (dd/mm/aaaa, até 2030)");
                 data = leia.nextLine();
                 verific = VerificaData(data, dateAtual);
                 if (!verific) {
@@ -79,7 +79,7 @@ public class Linha {
                 }
 
             }
-            if (ano < anoAtual) {
+            if (ano < anoAtual || ano > 2030) {
                 System.out.println("Data inválida");
                 return true;
             }

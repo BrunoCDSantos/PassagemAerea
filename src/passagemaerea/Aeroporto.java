@@ -21,20 +21,12 @@ public class Aeroporto {
 
     public void VerificaAeroporto(String aeroporto) {
 
-        if (aeroporto.length() == 3) {
-            aeroporto = aeroporto.toUpperCase();
-            for (String b : iatas) {
-                if (aeroporto.equals(b)) {
-                    verdadeiro = false;
-                }
-            }
-        }
-        for (String a : aeroportos) {
-            if (aeroporto.equalsIgnoreCase(a)) {
+        aeroporto = aeroporto.toUpperCase().trim();
+        for (String b : iatas) {
+            if (aeroporto.equals(b)) {
                 verdadeiro = false;
             }
-        } 
-
+        }
     }
 
 }
