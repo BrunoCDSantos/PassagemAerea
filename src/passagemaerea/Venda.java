@@ -7,7 +7,7 @@ public class Venda {
     public String Nome() {
         String nome1;
         do {
-            nome1 = Util.pedeString("Digite o nome do passageiro diferente de nada");
+            nome1 = Util.pedeString("Informe o nome do passageiro (diferente de vazio)");
         } while (nome1.equals(""));
         return nome1;
     }
@@ -26,14 +26,14 @@ public class Venda {
             telefone1 = Util.pedeString("Informe o telefone do Passageiro(formato (xx)xxxx-xxxx não \n"
                     + "podendo conter letras):");
         } while (!telefone1.matches(maskTelefone));
-    return telefone1 ;
+    return telefone1;
     }
 
     public int Idade() {
        
         do {
-              idadePassageiro = Util.pedeInteiro("Informe a idade do passageiro(entre 5 à 100):");
-        } while (idadePassageiro < 5 || idadePassageiro > 99);
+              idadePassageiro = Util.pedeInteiro("Informe a idade do passageiro(entre 5 e 100):");
+        } while (idadePassageiro < 5 || idadePassageiro > 100);
      
         return idadePassageiro;
     }

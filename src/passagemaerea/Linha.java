@@ -48,7 +48,7 @@ public class Linha {
 
                 }
             } catch (java.lang.NumberFormatException e) {
-                System.out.println("Data Invalida, digite novamente.");
+                System.out.println("Data inválida, digite novamente.");
                 verific = true;
             }
 
@@ -71,7 +71,7 @@ public class Linha {
             if (mes < mesAtual) {
                 if (ano <= anoAtual) {
                     if (dia > 1 || dia < maiorDia) {
-                        System.out.println("data invalida");
+                        System.out.println("Data inválida");
                         return true;
                     } else {
                         return false;
@@ -80,16 +80,16 @@ public class Linha {
 
             }
             if (ano < anoAtual) {
-                System.out.println("Data invÃ¡lida");
+                System.out.println("Data inválida");
                 return true;
             }
             if (dia < 0 || dia > maiorDia) {
-                System.out.println("Data invÃ¡lida.");
+                System.out.println("Data inválida");
                 return true;
             }
 
         } catch (Exception e) {
-            System.out.println("Data inválida.");
+            System.out.println("Data inválida");
             return true;
         }
         return false;

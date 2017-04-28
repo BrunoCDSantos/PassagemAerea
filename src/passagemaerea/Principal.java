@@ -12,8 +12,8 @@ public class Principal {
     public ArrayList<Passageiro> Passageiros = new ArrayList();
 
     public static void main(String[] args) {
-        System.out.println("***********************************************BEM VINDO AO SISTEMAN DE VENDA DE PASSAGENS********************************");
-        System.out.println("**************************************************************AEREAS*****************************************************");
+        System.out.println("***************************************** BEM VINDO AO SISTEMA DE VENDA DE PASSAGENS **************************************");
+        System.out.println("********************************************************* AEREAS **********************************************************");
         Principal programa = new Principal();
         programa.iniciaPrograma();
     }
@@ -98,7 +98,7 @@ public class Principal {
             idadePassageiro = psVendidas.Idade();
             do {
                 do {
-                    CpfPassageiro = verificaCpf("Digite o Cpf do Passageiro:").trim();
+                    CpfPassageiro = verificaCpf("Digite o CPF do Passageiro:").trim();
                     p = buscaPassageiro(CpfPassageiro, nome);
                 } while (!(p == null));
                 a = buscaCliente(CpfPassageiro);
@@ -110,7 +110,7 @@ public class Principal {
 
             if (idadePassageiro < 13) {
                 tipoPassagem = "Passagem meia";
-                precoPS = (float) (prec * 0.25);
+                precoPS = (float) (prec * 0.75);
             } else {
                 tipoPassagem = "Passagem Inteira";
                 precoPS = prec;
@@ -118,9 +118,9 @@ public class Principal {
             precoFinal = precoFinal + precoPS;
             Passageiros.add(new Passageiro(nome, CpfCliente, CpfPassageiro, Telefone, tipoPassagem, IDs, AeroportoOrigem, AeroportoDestino, dataSaida, idadePassageiro, (lugar + 1), precoPS));
 
-            System.out.println("********************************PASSAGEM CADASTRADA COM SUCESSO****************************************.");
+            System.out.println("******************************** PASSAGEM CADASTRADA COM SUCESSO ****************************************.");
         }
-        System.out.println("Preço final: R$" + (precoFinal + pre));
+        System.out.println("Preço total: R$" + (precoFinal + pre));
 
     }
 
@@ -131,22 +131,22 @@ public class Principal {
         String telefoneCliente;
 
         String maskTelefone = "\\([0-9]{2}?\\)[0-9]{4}?\\-[0-9]{4}";
+        
         if (passa) {
-            cpfCliente = verificaCpf("Digite o CPF do cliente:");
+            cpfCliente = verificaCpf("Informe o CPF do cliente:");
         }
+        
         Cliente cliente = buscaCliente(cpfCliente);
-
         // verifica se o cliente está ou não cadastrado.
         if (cliente == null) {
-
             // como o cliente não está cadastrado, cria um objeto da classe Cliente e pede os demais dados para fazer o cadastro dele.
             do {
-                nomeCliente = Util.pedeString("Digite o nome do cliente(diferente de vazio):");
+                nomeCliente = Util.pedeString("Informe o nome do cliente(diferente de vazio):");
             } while ("".equals(nomeCliente));
 
             do {
-                IdadeCliente = Util.pedeInteiro("Digite a idade do cliente(de 18 à 100)");
-            } while (IdadeCliente < 17 || IdadeCliente > 99);
+                IdadeCliente = Util.pedeInteiro("Informe a idade do cliente(de 18 à 100)");
+            } while (IdadeCliente < 17 || IdadeCliente > 100);
 
             if (IdadeCliente > 17) {
                 do {
@@ -182,7 +182,7 @@ public class Principal {
         String CpfVenda;
         Aviao IDs = new Aviao();
 
-        CpfVenda = verificaCpf("Iniciaremos a venda de passagens áreas, por favor digite \n"
+        CpfVenda = verificaCpf("Iniciaremos a venda de passagens aereas, por favor Informe \n"
                 + "seu CPF para continuarmos: ");
 
         Cliente cliente = buscaCliente(CpfVenda);
@@ -214,7 +214,7 @@ public class Principal {
                 preco = prec;
 
                 Passageiros.add(new Passageiro(nome, CpfVenda, CpfVenda, telefone, "Inteira", numeroVoo, AeroportoOrigem, AeroportoDestino, dataSaida, idade, (lugar + 1), preco));
-                System.out.println("********************************PASSAGEM CADASTRADA COM SUCESSO****************************************.");
+                System.out.println("******************************** PASSAGEM CADASTRADA COM SUCESSO ****************************************.");
                 qtdPassagem = qtdPassagem - 1;
             } else {
                 preco = 0;
@@ -237,7 +237,7 @@ public class Principal {
                         + " \n 1 - Cadastrar cliente"
                         + " \n 2 - Vender Passagem"
                         + " \n 3 - Mostrar Passagem"
-                        + " \n 4 - Sair:");
+                        + " \n 4 - Sair");
 
                 switch (opcao) {
                     case 1:
@@ -255,22 +255,22 @@ public class Principal {
 
             } while (opcao != 4);
         } catch (java.util.InputMismatchException e) {
-            System.out.println("Valor informado inválido, programa encerrado por erro(Digite um número não uma letra).");
+            System.out.println("Valor informado inválido, programa encerrado por erro (informe apenas números, não outros caracteres).");
             iniciaPrograma();
         }
     }
 
     public void mostrarPassagem() {
         Principal mostraP = new Principal();
-        String CpfCliente = mostraP.verificaCpf("Digite o Cpf do Cliente para se exibido as Passagem ");
+        String CpfCliente = mostraP.verificaCpf("Informe o CPF do cliente para consultar os dados:");
         Cliente cliente = mostraP.buscaCliente(CpfCliente);
-        System.out.println("Dependêntes desse cpf");
+        System.out.println("Dependentes desse CPF:");
         if (cliente != null) {
-            System.out.println("Este passageiro não foi cadastrado no nosso sistema");
+            System.out.println("Este passageiro não foi cadastrado no nosso sistema.");
         } else {
             for (Passageiro object : Passageiros) {
                 if (object.getCpfCliente().equals(CpfCliente)) {
-                    System.out.println("***********************************************Passagem*******************************************************");
+                    System.out.println("*********************************************** Passagem *******************************************************");
                     System.out.println("* Nome do passageiro: " + object.getNome());
                     System.out.println("* Idade do passageiro: " + object.getIdade());
                     System.out.println("* Aeroporto de embarque: " + object.getAeroportoO());
@@ -280,9 +280,7 @@ public class Principal {
                     System.out.println("* Tipo da passagem: Passagem " + object.getTipodaPassagem());
                     System.out.println("* Preço da passagem: R$" + object.getPreco());
                     System.out.println("**************************************************************************************************************");
-
                 }
-
             }
         }
         Principal programa = new Principal();
