@@ -254,14 +254,13 @@ public class Principal {
     Se o CPF foi cadastrado na compra de uma passagem, informa a(s) passagem(ns) comprada(s) e os dados do passageiro que a possui ;
     Se não, informa que não foi encontrado nenhum dado.
     */
-    public void mostrarPassagem() {
-        Principal mostraP = new Principal();
-        String CpfCliente = mostraP.verificaCpf("Informe o CPF do cliente para consultar os dados:");
-        Cliente cliente = mostraP.buscaCliente(CpfCliente);
-        if (cliente != null) {
+    public void mostrarPassagem() { 
+        String CpfCliente = verificaCpf("Informe o CPF do cliente para consultar os dados:");
+        Cliente cliente = buscaCliente(CpfCliente);
+        System.out.println("Passagens compradas:");
+        if (cliente == null) {
             System.out.println("Nenhum dado encontrado.");
         } else {
-            System.out.println("Passagens compradas:");
             for (Passageiro object : Passageiros) {
                 if (object.getCpfCliente().equals(CpfCliente)) {
                     System.out.println("*********************************************** Passagem *******************************************************");
