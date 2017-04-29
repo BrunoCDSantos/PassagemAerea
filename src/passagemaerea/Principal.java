@@ -105,7 +105,7 @@ public class Principal {
                     p = buscaPassageiro(CpfPassageiro, nome);
                 } while (!(p == null));
                 a = buscaCliente(CpfPassageiro);
-            } while (!(a == null));
+            } while (a == null);
 
             Telefone = psVendidas.Telefone();
             IDs = IdPassagem.IDsPassagem();
