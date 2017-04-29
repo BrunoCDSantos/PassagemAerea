@@ -10,7 +10,7 @@ public class Linha {
 
     static Scanner leia = new Scanner(System.in);
     float preco;
-
+    
     public String pedeOrigemDestino(String msg) {
         Aeroporto verific = new Aeroporto();
         String Aeroporto;
@@ -22,7 +22,7 @@ public class Linha {
 
         return Aeroporto;
     }
-
+    //Pede e valida a data informada
     public String pedeData() {
         String data = null;
         boolean verific = false;
@@ -55,7 +55,7 @@ public class Linha {
         } while (verific);
         return data;
     }
-
+    
     public boolean VerificaData(String data, String dataAtual) {
         try {
         int[] diasNoMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -94,14 +94,14 @@ public class Linha {
         }
         return false;
     }
-
+    
     public float CalculaPrevisão(String AeroportoOrigem, String AeroportoDestino) {
         String previsao = BuscaPrevisao(AeroportoOrigem, AeroportoDestino);
         System.out.println("O tempo aproximado de voo será de:  " + previsao);
         return preco;
 
     }
-
+    //Pega previsão e armazena
     private String BuscaPrevisao(String AO, String AD) {
         Aeroporto lista = new Aeroporto();
         lista.carregaArrayList();

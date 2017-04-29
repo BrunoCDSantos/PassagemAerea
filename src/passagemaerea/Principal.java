@@ -10,14 +10,17 @@ public class Principal {
     float prec;
     final private ArrayList<Cliente> listaClientes = new ArrayList();
     public ArrayList<Passageiro> Passageiros = new ArrayList();
-
+    
     public static void main(String[] args) {
         System.out.println("***************************************** BEM VINDO AO SISTEMA DE VENDA DE PASSAGENS **************************************");
         System.out.println("********************************************************* AEREAS **********************************************************");
         Principal programa = new Principal();
         programa.iniciaPrograma();
     }
-
+    /*
+    Informa os Aeroportos disponíves
+    Pede e valida quais os aeroportos de embarque e desembarque 
+    */
     private void cuidaLinha() {
         Aeroporto mostra = new Aeroporto();
         Linha linha = new Linha();
@@ -44,7 +47,7 @@ public class Principal {
         prec = linha.CalculaPrevisão(AeroportoOrigem, AeroportoDestino);
 
     }
-
+    //Verifica se o passageiro ja foi cadastrado 
     private Passageiro buscaPassageiro(String CpfPassageiro, String Nome) {
         for (Passageiro ob : Passageiros) {
             if (ob.getCpfPassageiro().equals(CpfPassageiro)) {
@@ -57,7 +60,7 @@ public class Principal {
         }
         return null;
     }
-
+    
     public Cliente buscaCliente(String cpf) {
         for (Cliente objeto : listaClientes) {
             if (objeto.getCpf().equals(cpf)) {
@@ -66,7 +69,7 @@ public class Principal {
         }
         return null;
     }
-
+    //valida o formato em que o CPF do cliente deve ser informado
     public String verificaCpf(String mensagem) {
         String CpfVerificado;
         String mask = "[0-9]{3}?\\.[0-9]{3}?\\.[0-9]{3}?\\-[0-9]{2}";
@@ -123,7 +126,7 @@ public class Principal {
         System.out.println("Preço total: R$" + (precoFinal + pre));
 
     }
-
+    //Pede e valida as informações do cliente
     private void verificacaoCliente(boolean passa, String cpf) {
         String cpfCliente = cpf;
         int IdadeCliente;
@@ -170,7 +173,7 @@ public class Principal {
             System.out.println("Idade: " + cliente.getIdade());
         }
     }
-
+    
     private void montaListaClientes() {
         listaClientes.add(new Cliente("Joao da Silva1", "168.129.201-02", "333", "44", 18));
     }
@@ -255,12 +258,17 @@ public class Principal {
             iniciaPrograma();
         }
     }
-
+    
+    /*
+    Pede o CPF do cliente que efetuou a compra da(s) passagem(ns) para consultar os dados sobre a compra;
+    Se o CPF foi cadastrado na compra de uma passagem, informa a(s) passagem(ns) comprada(s) e os dados do passageiro que a possui ;
+    Se não, informa que não foi encontrado nenhum dado.
+    */
     public void mostrarPassagem() {
         Principal mostraP = new Principal();
         String CpfCliente = mostraP.verificaCpf("Informe o CPF do cliente para consultar os dados:");
         Cliente cliente = mostraP.buscaCliente(CpfCliente);
-        if (cliente != null) {
+        if (cliente == null) {
             System.out.println("Nenhum dado encontrado.");
             System.out.println("**************************************************************************************************************");
         } else {

@@ -1,7 +1,7 @@
 package passagemaerea;
 
 public class Passageiro {
-
+ //Guarda e altera as infomações que o usuário digitar.
     private String nome, cpfCliente, cpfPassageiro, telefone, tipodaPassagem, idPassagem, AeroportoO, AeroportoD, data;
 
     public String getData() {

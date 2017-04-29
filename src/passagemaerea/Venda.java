@@ -5,7 +5,7 @@ public class Venda {
     String nome;
     String telefone;
     int idadePassageiro = 0;
-
+    //Pede e valida informações do passageiro.
     public String Nome() {
         String nome1;
         do {

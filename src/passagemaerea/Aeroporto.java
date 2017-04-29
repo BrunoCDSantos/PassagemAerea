@@ -18,7 +18,7 @@ public class Aeroporto {
         chega.add(new PrevisaoPreco("GIG", "FLN", "1h 33min", 166.00f));
         chega.add(new PrevisaoPreco("FLN", "GIG", "1h 33min", 166.00f));
     }
-
+    //Verifica se o aeroporto informado existe na lista disponibilizada.
     public void VerificaAeroporto(String aeroporto) {
 
         aeroporto = aeroporto.toUpperCase().trim();

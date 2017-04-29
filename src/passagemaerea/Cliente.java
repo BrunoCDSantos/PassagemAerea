@@ -4,7 +4,7 @@ public class Cliente {
 
     private String nome, cpf, endereco, telefone;
     private int idade;
-
+    //Guarda e altera as infomações que o usuário digitar.
     public Cliente(String nome, String cpf, String endereco, String telefone, int idade) {
         this.nome = nome;
         this.cpf = cpf;

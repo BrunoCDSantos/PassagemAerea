@@ -1,6 +1,8 @@
 
 package passagemaerea;
+
 public class PrevisaoPreco {
+    //Guarda e altera as infomações que o usuário digitar.
     String AeroportoOrigem, AeroportoDestino, previcao;
     float Preco;
 

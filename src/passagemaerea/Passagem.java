@@ -3,7 +3,7 @@ package passagemaerea;
 public class Passagem {
 
     String Ids = IDsPassagem();
-
+    //Identifica a passagem para referencia-la ao passageiro certo.
     public String IDsPassagem() {
         Principal mostraP = new Principal();
         int idPassagem = 0;
