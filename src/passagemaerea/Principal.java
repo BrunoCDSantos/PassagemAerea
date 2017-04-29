@@ -173,10 +173,6 @@ public class Principal {
             System.out.println("Idade: " + cliente.getIdade());
         }
     }
-    
-    private void montaListaClientes() {
-        listaClientes.add(new Cliente("Joao da Silva1", "168.129.201-02", "333", "44", 18));
-    }
 
     private void vendaPassagem() {
         int escolha;
@@ -224,13 +220,7 @@ public class Principal {
         }
     }
 
-    private void montarListaPassageiro() {
-        Passageiros.add(new Passageiro("Calos", "168.129.201-02", "999.999.999-01", "333701", "mwia", "01", "mia", "au", "bla", 12, 1, 12));
-    }
-
     private void iniciaPrograma() {
-        montaListaClientes();
-        montarListaPassageiro();
         int opcao;
         try {
             do {
@@ -270,7 +260,6 @@ public class Principal {
         Cliente cliente = mostraP.buscaCliente(CpfCliente);
         if (cliente != null) {
             System.out.println("Nenhum dado encontrado.");
-            System.out.println("**************************************************************************************************************");
         } else {
             System.out.println("Passagens compradas:");
             for (Passageiro object : Passageiros) {
