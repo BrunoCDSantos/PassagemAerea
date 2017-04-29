@@ -268,7 +268,7 @@ public class Principal {
         Principal mostraP = new Principal();
         String CpfCliente = mostraP.verificaCpf("Informe o CPF do cliente para consultar os dados:");
         Cliente cliente = mostraP.buscaCliente(CpfCliente);
-        if (cliente == null) {
+        if (cliente != null) {
             System.out.println("Nenhum dado encontrado.");
             System.out.println("**************************************************************************************************************");
         } else {
